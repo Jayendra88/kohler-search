@@ -1,9 +1,9 @@
 {
-  "vendor": "sefuateurope",
-  "name": "custom-search",
+  "vendor": "kohlerdev",
+  "name": "search-addons",
   "version": "0.0.1",
-  "title": "Custom Search",
-  "description": "Custom search implementation",
+  "title": "Search Addons",
+  "description": "Search Addons",
   "builders": {
     "react": "3.x",
     "messages": "1.x",
@@ -11,11 +11,13 @@
     "store": "0.x"
   },
   "dependencies": {
-    "vtex.search-page-context": "0.x"
+    "vtex.search-page-context": "0.x",
+    "vtex.product-context": "0.x",
+    "vtex.css-handles": "1.x",
+    "vtex.product-comparison": "0.x",
+    "vtex.render-runtime": "0.x"
   },
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "policies": [],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }

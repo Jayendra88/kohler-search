@@ -19,7 +19,12 @@
     "@vtex/tsconfig": "^0.4.4",
     "apollo-cache-inmemory": "^1.6.5",
     "graphql": "^14.6.0",
-    "typescript": "3.9.7"
+    "kohlerdev.search-addons": "https://neeshdev--kohlerdev.myvtex.com/_v/private/typings/linked/v1/kohlerdev.search-addons@0.0.1+build1763991440/public/@types/kohlerdev.search-addons",
+    "typescript": "3.9.7",
+    "vtex.css-handles": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@1.0.1/public/@types/vtex.css-handles",
+    "vtex.product-comparison": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-comparison@0.20.0/public/@types/vtex.product-comparison",
+    "vtex.product-context": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.10.1/public/@types/vtex.product-context",
+    "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.136.1/public/@types/vtex.render-runtime"
   },
   "resolutions": {
     "@types/jest": "26.0.15"

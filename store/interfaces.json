@@ -1,5 +1,13 @@
 {
-    "horizontal-filter-navigator": {
-        "component": "HorizontalFilterNavigator"
-    }
+  "horizontal-filter-navigator": {
+    "component": "HorizontalFilterNavigator"
+  },
+  "product-table-wrapper": {
+    "component": "ProductTable",
+    "allowed": "*"
+  },
+  "product-table-row": {
+    "component": "ProductTableRow",
+    "allowed": "*"
+  }
 }

@@ -1,0 +1,31 @@
+.productTableWrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.productTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+}
+
+.tableHeader {
+  background-color: #f3f9ff;
+}
+
+.tableHeaderRow {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tableHeaderCell {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #000;
+  font-size: 14px;
+}
+
+.tableBody {
+  background-color: #fff;
+}
+
