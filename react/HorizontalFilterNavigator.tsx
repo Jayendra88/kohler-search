@@ -2,8 +2,8 @@ import React, { useCallback, useMemo } from 'react';
 import { useSearchPage } from 'vtex.search-page-context/SearchPageContext';
 
 import { FilterDropdown, LoadingPlaceholder, SelectedFilters } from './components';
-import { FacetTransformer, NavigationService } from './utils';
-import { useFilterState } from './hooks';
+import { FacetTransformer } from './utils';
+import { useFacetNavigation, useFilterState } from './hooks';
 import type { FacetItem } from './types';
 
 const HorizontalFilterNavigator = () => {
@@ -11,7 +11,6 @@ const HorizontalFilterNavigator = () => {
     searchQuery,
     map,
     showFacets,
-    navigateToFacet,
   } = useSearchPage();
 
   // Transform facets data using the transformer utility
@@ -19,15 +18,59 @@ const HorizontalFilterNavigator = () => {
     return FacetTransformer.transformAllFacets(searchQuery?.data?.facets || {});
   }, [searchQuery?.data?.facets]);
 
+//   const filtersFetchMore =
+//       searchQuery && searchQuery.facets && searchQuery.facets.facetsFetchMore
+//         ? searchQuery.facets.facetsFetchMore
+//         : undefined
+
+    const facets =
+      searchQuery && searchQuery.data && searchQuery.data.facets
+        ? searchQuery.data.facets
+        : {}
+
+    const {
+      categoriesTrees,
+    } = facets
+
+    console.log('>> Facet Groups:', facetGroups);
+    console.log('>> Facets:', facets);
+
+
   // Use the custom hook for filter state management
   const { selectedFilters, updateSelection } = useFilterState(facetGroups);
 
+  const getSelectedCategories = (tree: any[]): any[] => {
+  for (const node of tree) {
+    if (!node.selected) {
+      continue
+    }
+
+    if (node.children) {
+      return [node, ...getSelectedCategories(node.children)]
+    }
+
+    return [node]
+  }
+
+  return []
+}
+
+  const selectedCategories = getSelectedCategories(categoriesTrees || [])
+  const navigateToFacet = useFacetNavigation(
+    useMemo(() => {
+      return selectedCategories.concat(selectedFilters)
+    }, [selectedFilters, selectedCategories]),
+    'none'
+  )
+
   const handleSelectionChange = useCallback((facetType: string, key: string | null, value: string, selected: boolean) => {
+
+    console.log('>> Handling selection change:', { facetType, key, value, selected }); 
     // Update local state
     updateSelection(value, selected);
 
     // Navigate using the navigation service
-    NavigationService.navigateToFacet(navigateToFacet, facetType, key, value, selected);
+    navigateToFacet(selectedFilters, false, true);
   }, [navigateToFacet, updateSelection]);
 
   // Collect all selected facets from all groups
