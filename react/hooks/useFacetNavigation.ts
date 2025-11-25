@@ -368,9 +368,9 @@ export const buildNewQueryMap = (
   return buildQueryAndMap(querySegments, mapSegments, facets, selectedFacets)
 }
 
-const useFacetNavigation = (selectedFacets, scrollToTop = 'none') => {
+const useFacetNavigation = (selectedFacets: any, scrollToTop = 'none') => {
   const { navigate, setQuery, query: runtimeQuery } = useRuntime()
-  const { map, query } = useFilterNavigator()
+  const { map, query } = useFilterNavigator() as any
   const { fuzzy, operator, searchState } = useSearchState()
   const { searchQuery } = useSearchPage()
   const [ignoreGlobalShipping, setIgnoreGlobalShipping] = useState(false)
@@ -400,7 +400,7 @@ const useFacetNavigation = (selectedFacets, scrollToTop = 'none') => {
       }
 
       if (scrollToTop !== 'none') {
-        window.scroll({ top: 0, left: 0, behavior: scrollToTop })
+        window.scroll({ top: 0, left: 0, behavior: scrollToTop as any })
       }
 
       if (preventRouteChange) {
