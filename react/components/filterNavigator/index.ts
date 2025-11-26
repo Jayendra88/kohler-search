@@ -5,6 +5,7 @@ export { default as DropdownHeader } from './DropdownHeader';
 export { default as SelectedFilters } from './SelectedFilters';
 export { default as FilterDropdown } from './FilterDropdown';
 export { default as LoadingPlaceholder } from './LoadingPlaceholder';
+export { default as Sidebar } from './Sidebar';
 
 // Re-export types from centralized location
 export type {

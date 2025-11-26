@@ -6,14 +6,6 @@
     position: relative;
 }
 
-/* Filter Navigator Container - holds dropdowns and All Filters button */
-.filterNavigatorContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    align-items: center;
-}
-
 /* Loading State */
 .horizontalFilterNavigatorContainer--loading {
     opacity: 0.6;
@@ -29,74 +21,4 @@
 /* Empty State */
 .horizontalFilterNavigatorContainer--empty {
     display: none;
-}
-
-/* Filter Sidebar Button Styles */
-.filterSidebarButton {
-  border: 1px solid #e3e4e6;
-  transition: all 0.2s ease;
-  min-width: auto;
-  font-size: 0.875rem;
-  color: #3f3f40;
-  background-color: #f7f9fa;
-  height: 40px;
-  padding: 0.5rem 1rem;
-  border-radius: 3px;
-  font-weight: 400;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  margin: 0;
-}
-
-.filterSidebarButton:hover {
-  background-color: #eef1f3;
-  border-color: #cacbcc;
-}
-
-.filterSidebarButton:active {
-  background-color: #e3e6e8;
-}
-
-.filterSidebarButtonIcon {
-  display: flex;
-  align-items: center;
-  color: #727273;
-}
-
-.filterSidebarButtonText {
-  color: #3f3f40;
-  font-weight: 400;
-}
-
-/* Sidebar Footer */
-.filterSidebarFooter {
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0;
-}
-
-/* Clear Button */
-.filterSidebarClearButton {
-  transition: background-color 0.2s ease;
-}
-
-.filterSidebarClearButton:hover {
-  background-color: #e3e4e6;
-}
-
-.filterSidebarClearButton:active {
-  background-color: #cacbcc;
-}
-
-/* Apply Button */
-.filterSidebarApplyButton {
-  transition: all 0.2s ease;
-}
-
-.filterSidebarApplyButton:hover {
-  opacity: 0.9;
-}
-
-.filterSidebarApplyButton:active {
-  opacity: 0.8;
 }
