@@ -1,9 +1,10 @@
-import React from 'react'
+/* eslint-disable no-console */
+import React, { useState } from 'react'
 import { useProduct } from 'vtex.product-context'
 import { useCssHandles } from 'vtex.css-handles'
-// @ts-expect-error - useProductComparison exists at runtime but may not be in types
-import { useProductComparison } from 'vtex.product-comparison'
-import { ExtensionPoint } from 'vtex.render-runtime'
+// import { useProductComparison } from 'vtex.product-comparison'
+// import { ExtensionPoint } from 'vtex.render-runtime'
+
 import './ProductTableRow.css'
 
 const CSS_HANDLES = [
@@ -30,24 +31,46 @@ const ProductTableRow: React.FC = () => {
 
   const product = useProduct()
 
-  const { isProductSelected, toggleProduct } = useProductComparison()
+  const [image] = useState<string>(
+    product?.selectedItem?.images?.find((im) => im)?.imageUrl ?? ''
+  )
+
+  const referenceId =
+    product?.selectedItem?.referenceId?.find((r) => r.Key === 'RefId')?.Value ??
+    ''
 
   if (!product) {
     return null
   }
 
-  const productId = product.product?.productId
-  const isSelected = isProductSelected?.(productId)
+  console.log(product)
+
+  // const productId = product.product?.productId
+  // const isSelected = isProductSelected?.(productId)
 
   return (
     <tr className={handles.tableRow}>
-      <td className={`${handles.tableCell} ${handles.compareCell}`}>
-        <input
-          type="checkbox"
-          checked={isSelected || false}
-          onChange={() => toggleProduct?.(productId)}
-        />
-        <ExtensionPoint id="check-permission#product-comparison-table" />
+      <td>{product.product?.productId}</td>
+      <td className={`${handles.tableCell} ${handles.skuCell}`}>
+        {referenceId}
+      </td>
+      <td>
+        <div>
+          <img
+            src={image}
+            alt={product.product?.productName}
+            width={100}
+            height={100}
+            style={{ objectFit: 'contain' }}
+          />
+          <div>
+            <span>{product.product?.brand}</span>
+            <span>{product.product?.productName}</span>
+          </div>
+        </div>
+      </td>
+      {/* <td className={`${handles.tableCell} ${handles.compareCell}`}>
+        <input type="checkbox" checked={false} />
       </td>
       <td className={`${handles.tableCell} ${handles.skuCell}`}>
         <ExtensionPoint id="product-identifier.summary" />
@@ -67,7 +90,7 @@ const ProductTableRow: React.FC = () => {
         <ExtensionPoint id="product-specification-badges" />
       </td>
       <td className={`${handles.tableCell} ${handles.priceCell}`}>
-        <ExtensionPoint id="check-permission#product-summary-price-table" />
+        <ExtensionPoint id="product-summary-price" />
       </td>
       <td className={`${handles.tableCell} ${handles.favoriteCell}`}>
         <ExtensionPoint id="add-to-list-btn#table" />
@@ -77,7 +100,7 @@ const ProductTableRow: React.FC = () => {
       </td>
       <td className={`${handles.tableCell} ${handles.shareCell}`}>
         <ExtensionPoint id="rich-text#share-placeholder" />
-      </td>
+      </td> */}
     </tr>
   )
 }

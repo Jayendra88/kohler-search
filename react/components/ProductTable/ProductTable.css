@@ -29,3 +29,25 @@
   background-color: #fff;
 }
 
+.priceHeaderCell {
+  position: relative;
+}
+
+.priceHeaderContent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.infoIcon {
+  font-size: 12px;
+  opacity: 0.6;
+  cursor: help;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.05);
+}

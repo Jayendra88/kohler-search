@@ -4,10 +4,27 @@
   },
   "product-table-wrapper": {
     "component": "ProductTable",
+    "composition": "children",
     "allowed": "*"
   },
   "product-table-row": {
     "component": "ProductTableRow",
+    "composition": "children",
     "allowed": "*"
+  },
+  "custom-search-content": {
+    "component": "CustomSearchContent",
+    "allowed": [
+      "product-summary-name",
+      "product-summary-brand",
+      "product-summary-price",
+      "product-summary-image",
+      "product-summary-add-to-list-button",
+      "product-summary-buy-button"
+    ]
+  },
+  "custom-gallery": {
+    "component": "CustomGallery",
+    "composition": "children"
   }
 }

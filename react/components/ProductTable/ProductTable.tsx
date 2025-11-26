@@ -1,6 +1,6 @@
 import React from 'react'
 import { useCssHandles } from 'vtex.css-handles'
-import { ExtensionPoint } from 'vtex.render-runtime'
+// import { ExtensionPoint } from 'vtex.render-runtime'
 import './ProductTable.css'
 
 const CSS_HANDLES = [
@@ -10,13 +10,18 @@ const CSS_HANDLES = [
   'tableHeaderRow',
   'tableHeaderCell',
   'tableBody',
+  'priceHeaderCell',
+  'priceHeaderContent',
+  'infoIcon',
 ] as const
 
 interface ProductTableWrapperProps {
   children?: React.ReactNode
 }
 
-const ProductTableWrapper: React.FC<ProductTableWrapperProps> = () => {
+const ProductTableWrapper: React.FC<ProductTableWrapperProps> = ({
+  children,
+}) => {
   const handles = (useCssHandles(CSS_HANDLES) as unknown) as Record<
     typeof CSS_HANDLES[number],
     string
@@ -31,14 +36,28 @@ const ProductTableWrapper: React.FC<ProductTableWrapperProps> = () => {
             <th className={handles.tableHeaderCell}>SKU</th>
             <th className={handles.tableHeaderCell}>Products</th>
             <th className={handles.tableHeaderCell}>Status</th>
-            <th className={handles.tableHeaderCell}>List Price</th>
+            <th
+              className={`${handles.tableHeaderCell} ${handles.priceHeaderCell}`}
+            >
+              <span className={handles.priceHeaderContent}>
+                List Price
+                <span
+                  className={handles.infoIcon}
+                  role="img"
+                  aria-label="List Price Information"
+                  title="List Price Information"
+                >
+                  i
+                </span>
+              </span>
+            </th>
             <th className={handles.tableHeaderCell}>Favorite</th>
             <th className={handles.tableHeaderCell}>Service Parts Diagram</th>
             <th className={handles.tableHeaderCell}>Share</th>
           </tr>
         </thead>
         <tbody className={handles.tableBody}>
-          <ExtensionPoint id="gallery" />
+          <>{children}</>
         </tbody>
       </table>
     </div>
