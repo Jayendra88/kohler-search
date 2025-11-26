@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useProduct } from 'vtex.product-context'
 import { useCssHandles } from 'vtex.css-handles'
 // import { useProductComparison } from 'vtex.product-comparison'
-// import { ExtensionPoint } from 'vtex.render-runtime'
+import { ExtensionPoint } from 'vtex.render-runtime'
 
 import './ProductTableRow.css'
 
@@ -50,7 +50,7 @@ const ProductTableRow: React.FC = () => {
 
   return (
     <tr className={handles.tableRow}>
-      <td>{product.product?.productId}</td>
+      {/* <td>{product.product?.productId}</td>
       <td className={`${handles.tableCell} ${handles.skuCell}`}>
         {referenceId}
       </td>
@@ -68,8 +68,8 @@ const ProductTableRow: React.FC = () => {
             <span>{product.product?.productName}</span>
           </div>
         </div>
-      </td>
-      {/* <td className={`${handles.tableCell} ${handles.compareCell}`}>
+      </td> */}
+      <td className={`${handles.tableCell} ${handles.compareCell}`}>
         <input type="checkbox" checked={false} />
       </td>
       <td className={`${handles.tableCell} ${handles.skuCell}`}>
@@ -100,7 +100,7 @@ const ProductTableRow: React.FC = () => {
       </td>
       <td className={`${handles.tableCell} ${handles.shareCell}`}>
         <ExtensionPoint id="rich-text#share-placeholder" />
-      </td> */}
+      </td>
     </tr>
   )
 }
