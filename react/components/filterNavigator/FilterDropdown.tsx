@@ -10,7 +10,11 @@ const CSS_HANDLES = [
   'filterDropdownSelectionBtn',
   'filterDropdownTitle',
   'filterDropdownSelectionCount',
+  'filterDropdownArrow',
   'filterDropdownContent',
+  'filterDropdownHeader',
+  'filterDropdownHeaderTitle',
+  'filterDropdownHeaderClose',
   'filterDropdownFacetList',
 ]
 
@@ -54,28 +58,28 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({ facetGroup, selectedVal
   }, [isOpen]);
 
   return (
-    <div className={`${handles.filterDropdown} horizontal-filter-dropdown`} ref={dropdownRef}>
+    <div className={handles.filterDropdown} ref={dropdownRef}>
       <button 
-        className={`${handles.filterDropdownSelectionBtn} dropdown-trigger ${selectedCount > 0 ? 'has-selections' : ''}`}
+        className={`${handles.filterDropdownSelectionBtn} ${selectedCount > 0 ? `${handles.filterDropdownSelectionBtn}--hasSelections` : ''}`}
         onClick={() => setIsOpen(!isOpen)}
         onKeyDown={handleKeyDown}
         aria-expanded={isOpen}
       >
-        <span className={`${handles.filterDropdownTitle} dropdown-title`}>
+        <span className={handles.filterDropdownTitle}>
           {facetGroup.name}
-          {selectedCount > 0 && <span className={`${handles.filterDropdownSelectionCount} selection-count`}>({selectedCount})</span>}
+          {selectedCount > 0 && <span className={handles.filterDropdownSelectionCount}>({selectedCount})</span>}
         </span>
-        <span className={`dropdown-arrow ${isOpen ? 'open' : ''}`}>▼</span>
+        <span className={`${handles.filterDropdownArrow} ${isOpen ? `${handles.filterDropdownArrow}--open` : ''}`}>▼</span>
       </button>
 
       {isOpen && (
-        <div className={`${handles.filterDropdownContent} dropdown-content`}>
+        <div className={handles.filterDropdownContent}>
           <DropdownHeader 
             title={facetGroup.name}
             onClose={() => setIsOpen(false)}
           />
           
-          <div className={`${handles.filterDropdownFacetList} facet-list`}>
+          <div className={handles.filterDropdownFacetList}>
             {facetGroup.facets.map((facet) => (
               <FacetCheckbox
                 key={facet.value}

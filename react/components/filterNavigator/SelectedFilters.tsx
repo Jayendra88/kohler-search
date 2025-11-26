@@ -18,11 +18,11 @@ const SelectedFilters: React.FC<SelectedFiltersProps> = ({
   }
 
   return (
-    <div className={`${handles.selectedFilters} selected-filters`}>
-      <div className={`${handles.selectedFiltersTitle} selected-filters-title`}>
+    <div className={handles.selectedFilters}>
+      <div className={handles.selectedFiltersTitle}>
         Active Filters ({selectedFacets.length}):
       </div>
-      <div className={`${handles.filterTags} flex flex-row filter-tags`}>
+      <div className={handles.filterTags}>
         {selectedFacets.map((facet) => (
           <FilterTag
             key={facet.value}

@@ -13,15 +13,15 @@ const CSS_HANDLES = [
 const FacetCheckbox: React.FC<FacetCheckboxProps> = ({ facet, isSelected, onChange }) => {
   const { handles } = useCssHandles(CSS_HANDLES)
   return (
-    <label className={`${handles.facetItem} facet-item`}>
+    <label className={handles.facetItem}>
       <input
-        className={`${handles.facetCheckboxInput} facet-checkbox-input`}
+        className={handles.facetCheckboxInput}
         type="checkbox"
         checked={isSelected}
         onChange={(e) => onChange(facet, e.target.checked)}
       />
-      <span className={`${handles.facetName} facet-name`}>{facet.name}</span>
-      <span className={`${handles.facetQuantity} facet-quantity`}>({facet.quantity})</span>
+      <span className={handles.facetName}>{facet.name}</span>
+      <span className={handles.facetQuantity}>({facet.quantity})</span>
     </label>
   );
 };

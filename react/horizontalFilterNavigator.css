@@ -1,5 +1,25 @@
+/* Main Horizontal Filter Navigator Container */
 .horizontalFilterNavigatorContainer {
     padding: 1rem 0;
     border-bottom: 1px solid #E7E9EE;
     margin-bottom: 1rem;
+    position: relative;
+}
+
+/* Loading State */
+.horizontalFilterNavigatorContainer--loading {
+    opacity: 0.6;
+    pointer-events: none;
+    padding: 1rem 0;
+}
+
+.loadingPlaceholder {
+    color: #757575;
+    font-size: 14px;
+    font-style: italic;
+}
+
+/* Empty State */
+.horizontalFilterNavigatorContainer--empty {
+    display: none;
 }

@@ -11,10 +11,10 @@ const CSS_HANDLES = [
 const FilterTag: React.FC<FilterTagProps> = ({ facet, onRemove }) => {
   const { handles } = useCssHandles(CSS_HANDLES)
   return (
-    <div className={`${handles.filterTag} filter-tag`}>
-      <span className={`${handles.tagText} tag-text`}>{facet.name}</span>
+    <div className={handles.filterTag}>
+      <span className={handles.tagText}>{facet.name}</span>
       <button 
-        className={`${handles.tagRemove} tag-remove`}
+        className={handles.tagRemove}
         onClick={() => onRemove(facet.value)}
         aria-label={`Remove ${facet.name} filter`}
       >
