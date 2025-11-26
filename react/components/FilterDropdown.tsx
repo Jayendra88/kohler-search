@@ -28,8 +28,9 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({ facetGroup, selectedVal
   }, [isOpen]);
 
   const handleCheckboxChange = useCallback((facet: FacetItem, checked: boolean) => {
-    onSelectionChange(facetGroup.type, facetGroup.key || null, facet.value, checked);
-  }, [facetGroup.type, facetGroup.key, onSelectionChange]);
+    console.log('>> Checkbox changed:', { ...facet, checked });
+    onSelectionChange({...facet });
+  }, [onSelectionChange]);
 
   const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
     if (event.key === 'Escape') {

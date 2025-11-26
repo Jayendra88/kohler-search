@@ -32,7 +32,7 @@ export const useFilterState = (facetGroups: FacetGroup[]): FilterStateHookReturn
   }, []);
 
   return {
-    selectedFilters,
+    selectedFilterValues: selectedFilters,
     updateSelection
   };
 };

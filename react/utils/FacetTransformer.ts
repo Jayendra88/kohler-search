@@ -1,4 +1,4 @@
-import type { FacetGroup, VtexBrand, VtexPriceRange, VtexCategory, VtexSpecificationFilter, VtexFacetsData } from '../types';
+import type { FacetGroup, VtexBrand, VtexPriceRange, VtexCategory, VtexSpecificationFilter, VtexFacetsData, FacetItem } from '../types';
 
 /**
  * Transforms raw facets data from VTEX API into standardized FacetGroup format
@@ -30,14 +30,7 @@ export class FacetTransformer {
         name: spec.name,
         type: 'specificationFilters' as const,
         key: spec.name,
-        facets: spec.facets.map((facet) => ({
-          id: facet.id || facet.value,
-          quantity: facet.quantity,
-          name: facet.name,
-          key: facet.key || facet.value,
-          value: facet.value,
-          selected: facet.selected || false,
-        }))
+        facets: spec.facets.map((facet) => facet as FacetItem)
       }));
   }
 
