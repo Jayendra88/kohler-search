@@ -35,7 +35,7 @@ const ProductTableWrapper: React.FC<ProductTableWrapperProps> = ({
             <th className={handles.tableHeaderCell}>Compare</th>
             <th className={handles.tableHeaderCell}>SKU</th>
             <th className={handles.tableHeaderCell}>Products</th>
-            <th className={handles.tableHeaderCell}>Status</th>
+            <th className={handles.tableHeaderCell}>Finish</th>
             <th
               className={`${handles.tableHeaderCell} ${handles.priceHeaderCell}`}
             >
@@ -51,9 +51,8 @@ const ProductTableWrapper: React.FC<ProductTableWrapperProps> = ({
                 </span>
               </span>
             </th>
-            <th className={handles.tableHeaderCell}>Favorite</th>
-            <th className={handles.tableHeaderCell}>Service Parts Diagram</th>
-            <th className={handles.tableHeaderCell}>Share</th>
+            <th className={handles.tableHeaderCell}>Service Parts</th>
+            <th className={handles.tableHeaderCell}>Action</th>
           </tr>
         </thead>
         <tbody className={handles.tableBody}>
