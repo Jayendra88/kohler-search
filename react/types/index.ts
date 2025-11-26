@@ -8,27 +8,31 @@
 // ============================================================================
 
 export interface FacetItem {
-  id: string;
-  href?: string;
-  quantity: number;
-  name: string;
-  key: string;
-  value: string;
-  selected: boolean;
-  link?: string;
-  linkEncoded?: string;
-  map?: string;
-  range?: string;
-  children?: FacetItem[];
+  id: string
+  href?: string
+  quantity: number
+  name: string
+  key: string
+  value: string
+  selected: boolean
+  link?: string
+  linkEncoded?: string
+  map?: string
+  range?: string
+  children?: FacetItem[]
 }
 
-export type FacetType = 'brands' | 'specificationFilters' | 'categoriesTrees' | 'priceRanges';
+export type FacetType =
+  | 'brands'
+  | 'specificationFilters'
+  | 'categoriesTrees'
+  | 'priceRanges'
 
 export interface FacetGroup {
-  name: string;
-  facets: FacetItem[];
-  type: FacetType;
-  key?: string;
+  name: string
+  facets: FacetItem[]
+  type: FacetType
+  key?: string
 }
 
 // ============================================================================
@@ -36,60 +40,60 @@ export interface FacetGroup {
 // ============================================================================
 
 export interface VtexBrand {
-  id?: string;
-  name: string;
-  value: string;
-  quantity: number;
-  key?: string;
-  selected?: boolean;
+  id?: string
+  name: string
+  value: string
+  quantity: number
+  key?: string
+  selected?: boolean
 }
 
 export interface VtexPriceRange {
-  slug?: string;
-  range?: string;
-  name?: string;
-  quantity: number;
-  selected?: boolean;
+  slug?: string
+  range?: string
+  name?: string
+  quantity: number
+  selected?: boolean
 }
 
 export interface VtexCategory {
-  id?: string;
-  name: string;
-  value: string;
-  quantity: number;
-  key?: string;
-  selected?: boolean;
+  id?: string
+  name: string
+  value: string
+  quantity: number
+  key?: string
+  selected?: boolean
 }
 
 export interface VtexSpecificationFacet {
-  id?: string;
-  name: string;
-  value: string;
-  quantity: number;
-  key?: string;
-  selected?: boolean;
+  id?: string
+  name: string
+  value: string
+  quantity: number
+  key?: string
+  selected?: boolean
 }
 
 export interface VtexSpecificationFilter {
-  name: string;
-  facets: VtexSpecificationFacet[];
+  name: string
+  facets: VtexSpecificationFacet[]
 }
 
 export interface VtexFacetsData {
-  brands?: VtexBrand[];
-  priceRanges?: VtexPriceRange[];
-  specificationFilters?: VtexSpecificationFilter[];
-  categoriesTrees?: VtexCategory[];
+  brands?: VtexBrand[]
+  priceRanges?: VtexPriceRange[]
+  specificationFilters?: VtexSpecificationFilter[]
+  categoriesTrees?: VtexCategory[]
 }
 
 export interface VtexSearchQuery {
   data?: {
-    facets?: VtexFacetsData;
-  };
+    facets?: VtexFacetsData
+  }
   variables?: {
-    map: string;
-    query: string;
-  };
+    map: string
+    query: string
+  }
 }
 
 // ============================================================================
@@ -97,60 +101,58 @@ export interface VtexSearchQuery {
 // ============================================================================
 
 export interface FilterTagProps {
-  facet: FacetItem;
-  onRemove: (value: string) => void;
+  facet: FacetItem
+  onRemove: (facet: FacetItem) => void
 }
 
 export interface FacetCheckboxProps {
-  facet: FacetItem;
-  isSelected: boolean;
-  onChange: (facet: FacetItem, checked: boolean) => void;
+  facet: FacetItem
+  isSelected: boolean
+  onChange: (facet: FacetItem, checked: boolean) => void
 }
 
 export interface DropdownHeaderProps {
-  title: string;
-  onClose: () => void;
+  title: string
+  onClose: () => void
 }
 
 export interface SelectedFiltersProps {
-  selectedFacets: FacetItem[];
-  onRemoveFilter: (value: string) => void;
+  selectedFacets: FacetItem[]
+  onRemoveFilter: (facet: FacetItem) => void
 }
 
 export interface FilterDropdownProps {
-  facetGroup: FacetGroup;
-  selectedValues: Set<string>;
-  onSelectionChange: FacetSelectionChangeHandler;
+  facetGroup: FacetGroup
+  selectedValues: Set<string>
+  onSelectionChange: FacetSelectionChangeHandler
 }
 
 export interface LoadingPlaceholderProps {
-  message?: string;
+  message?: string
 }
 
 // ============================================================================
 // FUNCTION SIGNATURE TYPES
 // ============================================================================
 
-export type FacetSelectionChangeHandler = (
-    facet: FacetItem
-) => void;
+export type FacetSelectionChangeHandler = (facet: FacetItem) => void
 
 export type FacetNavigationHandler = (
   facetType: string,
   key: string | null,
   value: string,
   selected: boolean
-) => void;
+) => void
 
-export type FilterStateUpdater = (value: string, selected: boolean) => void;
+export type FilterStateUpdater = (value: string, selected: boolean) => void
 
 // ============================================================================
 // HOOK RETURN TYPES
 // ============================================================================
 
 export interface FilterStateHookReturn {
-  selectedFilterValues: Set<string>;
-  updateSelection: FilterStateUpdater;
+  selectedFilterValues: Set<string>
+  updateSelection: FilterStateUpdater
 }
 
 // ============================================================================
@@ -158,21 +160,21 @@ export interface FilterStateHookReturn {
 // ============================================================================
 
 export interface FacetNavigationPayload {
-  type: string;
-  value: string;
-  key?: string;
+  type: string
+  value: string
+  key?: string
 }
 
 export interface NavigationUrlParams {
-  map?: string;
-  query?: string;
-  page?: string;
-  fuzzy?: string;
-  operator?: string;
-  searchState?: string;
-  initialMap?: string;
-  initialQuery?: string;
-  priceRange?: string;
+  map?: string
+  query?: string
+  page?: string
+  fuzzy?: string
+  operator?: string
+  searchState?: string
+  initialMap?: string
+  initialQuery?: string
+  priceRange?: string
 }
 
 // ============================================================================
@@ -180,10 +182,10 @@ export interface NavigationUrlParams {
 // ============================================================================
 
 export interface SearchPageContext {
-  searchQuery?: VtexSearchQuery;
-  map?: string;
-  showFacets?: boolean;
-  navigateToFacet?: (payload: FacetNavigationPayload, selected: boolean) => void;
+  searchQuery?: VtexSearchQuery
+  map?: string
+  showFacets?: boolean
+  navigateToFacet?: (payload: FacetNavigationPayload, selected: boolean) => void
 }
 
 // ============================================================================
@@ -199,8 +201,8 @@ export const isFacetItem = (item: any): item is FacetItem => {
     typeof item.value === 'string' &&
     typeof item.quantity === 'number' &&
     typeof item.selected === 'boolean'
-  );
-};
+  )
+}
 
 export const isFacetGroup = (group: any): group is FacetGroup => {
   return (
@@ -209,9 +211,14 @@ export const isFacetGroup = (group: any): group is FacetGroup => {
     typeof group.name === 'string' &&
     Array.isArray(group.facets) &&
     typeof group.type === 'string' &&
-    ['brands', 'specificationFilters', 'categoriesTrees', 'priceRanges'].includes(group.type)
-  );
-};
+    [
+      'brands',
+      'specificationFilters',
+      'categoriesTrees',
+      'priceRanges',
+    ].includes(group.type)
+  )
+}
 
 export const isVtexFacetsData = (data: any): data is VtexFacetsData => {
   return (
@@ -219,58 +226,59 @@ export const isVtexFacetsData = (data: any): data is VtexFacetsData => {
     data !== null &&
     (Array.isArray(data.brands) || data.brands === undefined) &&
     (Array.isArray(data.priceRanges) || data.priceRanges === undefined) &&
-    (Array.isArray(data.specificationFilters) || data.specificationFilters === undefined) &&
+    (Array.isArray(data.specificationFilters) ||
+      data.specificationFilters === undefined) &&
     (Array.isArray(data.categoriesTrees) || data.categoriesTrees === undefined)
-  );
-};
+  )
+}
 
 // ============================================================================
 // GETFILTERS UTILITY TYPES
 // ============================================================================
 
 export interface GetFiltersFacet {
-  name: string;
-  quantity?: number;
-  key?: string;
-  value?: string;
-  selected?: boolean;
+  name: string
+  quantity?: number
+  key?: string
+  value?: string
+  selected?: boolean
 }
 
 export interface GetFiltersDeliveryFacet {
-  name: string;
-  title?: string;
-  type?: string;
-  facets: GetFiltersFacet[];
-  quantity?: number;
-  key?: string;
+  name: string
+  title?: string
+  type?: string
+  facets: GetFiltersFacet[]
+  quantity?: number
+  key?: string
 }
 
 export interface GetFiltersHiddenFacets {
-  brands?: boolean;
-  priceRange?: boolean;
+  brands?: boolean
+  priceRange?: boolean
   specificationFilters?: {
-    hideAll?: boolean;
-    hiddenFilters?: Array<{ name: string }>;
-  };
+    hideAll?: boolean
+    hiddenFilters?: Array<{ name: string }>
+  }
 }
 
 export interface GetFiltersResult {
-  type: string;
-  title: string;
-  facets: GetFiltersFacet[];
-  quantity?: number;
-  key?: string;
+  type: string
+  title: string
+  facets: GetFiltersFacet[]
+  quantity?: number
+  key?: string
 }
 
 export interface GetFiltersParams {
-  specificationFilters?: VtexSpecificationFilter[];
-  priceRanges?: VtexPriceRange[];
-  brands?: VtexBrand[];
-  deliveries?: GetFiltersDeliveryFacet[];
-  brandsQuantity?: number;
-  hiddenFacets?: GetFiltersHiddenFacets;
-  showShippingFacet?: boolean;
-  availableShippingValues?: string[];
+  specificationFilters?: VtexSpecificationFilter[]
+  priceRanges?: VtexPriceRange[]
+  brands?: VtexBrand[]
+  deliveries?: GetFiltersDeliveryFacet[]
+  brandsQuantity?: number
+  hiddenFacets?: GetFiltersHiddenFacets
+  showShippingFacet?: boolean
+  availableShippingValues?: string[]
 }
 
 // ============================================================================
@@ -278,64 +286,64 @@ export interface GetFiltersParams {
 // ============================================================================
 
 export interface CompatibilityFacetValue {
-  id: string | null;
-  quantity: number;
-  name: string;
-  key: string;
-  selected: boolean;
-  map: string;
-  value: string;
-  children?: CompatibilityFacetValue[];
+  id: string | null
+  quantity: number
+  name: string
+  key: string
+  selected: boolean
+  map: string
+  value: string
+  children?: CompatibilityFacetValue[]
 }
 
 export interface CompatibilityFacet {
-  name: string;
-  type: string;
-  hidden: boolean;
-  quantity: number;
-  facets: CompatibilityFacetValue[];
+  name: string
+  type: string
+  hidden: boolean
+  quantity: number
+  facets: CompatibilityFacetValue[]
 }
 
 export interface SelectedFacet {
-  key: string;
-  value: string;
+  key: string
+  value: string
 }
 
 export interface QueryArgs {
-  query: string;
-  map: string;
+  query: string
+  map: string
 }
 
 export interface MainSearches {
-  ft?: string;
-  productClusterIds?: string;
-  seller?: string;
+  ft?: string
+  productClusterIds?: string
+  seller?: string
 }
 
 export interface CompatibilityPriceRange {
   range: {
-    from: number;
-    to: number;
-  };
-  slug?: string;
-  [key: string]: any;
+    from: number
+    to: number
+  }
+  slug?: string
+  [key: string]: any
 }
 
 export interface DetachedFilters {
-  brands: CompatibilityFacetValue[];
-  brandsQuantity: number;
-  specificationFilters: CompatibilityFacet[];
-  categoriesTrees: CompatibilityFacetValue[];
-  priceRanges: CompatibilityPriceRange[];
-  deliveries: CompatibilityFacet[];
+  brands: CompatibilityFacetValue[]
+  brandsQuantity: number
+  specificationFilters: CompatibilityFacet[]
+  categoriesTrees: CompatibilityFacetValue[]
+  priceRanges: CompatibilityPriceRange[]
+  deliveries: CompatibilityFacet[]
 }
 
 export interface GroupedFilters {
-  BRAND?: CompatibilityFacet[];
-  NUMBER?: CompatibilityFacet[];
-  TEXT?: CompatibilityFacet[];
-  DELIVERY?: CompatibilityFacet[];
-  CATEGORYTREE?: CompatibilityFacet[];
-  PRICERANGE?: CompatibilityFacet[];
-  [key: string]: CompatibilityFacet[] | undefined;
+  BRAND?: CompatibilityFacet[]
+  NUMBER?: CompatibilityFacet[]
+  TEXT?: CompatibilityFacet[]
+  DELIVERY?: CompatibilityFacet[]
+  CATEGORYTREE?: CompatibilityFacet[]
+  PRICERANGE?: CompatibilityFacet[]
+  [key: string]: CompatibilityFacet[] | undefined
 }

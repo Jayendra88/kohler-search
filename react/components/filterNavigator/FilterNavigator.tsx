@@ -104,19 +104,12 @@ const FilterNavigator = ({ facetGroups, facets }: FilterNavigatorProps) => {
   }, [facetGroups, selectedFilterValues])
 
   const handleRemoveFilter = useCallback(
-    (value: string) => {
-      // Find the facet type and key for the value
-      let selectedFacet = null
-
-      facetGroups.forEach((group) => {
-        selectedFacet = group.facets.find((f) => f.value === value)
-      })
-
-      if (selectedFacet) {
-        handleSelectionChange(selectedFacet)
+    (facetSelected: FacetItem) => {
+      if (facetSelected) {
+        handleSelectionChange(facetSelected)
       }
     },
-    [facetGroups, handleSelectionChange]
+    [handleSelectionChange]
   )
 
   return (
