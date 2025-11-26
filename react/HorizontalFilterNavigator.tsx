@@ -1,27 +1,28 @@
 import React, { useMemo } from 'react';
 import { useSearchPage } from 'vtex.search-page-context/SearchPageContext';
+import { useCssHandles } from 'vtex.css-handles'
 
 import { LoadingPlaceholder } from './components';
 import { FacetTransformer } from './utils';
 import FilterNavigator from './components/FilterNavigator';
 import FilterNavigatorContext from './components/FilterNavigatorContext';
+import './horizontalFilterNavigator.css';
+
+const CSS_HANDLES = [
+  'horizontalFilterNavigatorContainer',
+]
 
 const HorizontalFilterNavigator = () => {
+  const { handles } = useCssHandles(CSS_HANDLES)
   const {
     searchQuery,
     map,
     showFacets,
   } = useSearchPage();
 
-  // Transform facets data using the transformer utility
   const facetGroups = useMemo(() => {
     return FacetTransformer.transformAllFacets(searchQuery?.data?.facets || {});
   }, [searchQuery?.data?.facets]);
-
-  //   const filtersFetchMore =
-  //       searchQuery && searchQuery.facets && searchQuery.facets.facetsFetchMore
-  //         ? searchQuery.facets.facetsFetchMore
-  //         : undefined
 
   const facets =
     searchQuery && searchQuery.data && searchQuery.data.facets
@@ -32,14 +33,6 @@ const HorizontalFilterNavigator = () => {
     queryArgs,
   } = facets
 
-  console.log('>> Facet Groups:', facetGroups);
-  console.log('>> Facets:', facets);
-
-
-  // Use the custom hook for filter state management
-
-
-  // Early returns for various states
   if (showFacets === false || !map || facetGroups.length === 0) {
     return null;
   }
@@ -49,7 +42,7 @@ const HorizontalFilterNavigator = () => {
   }
 
   return (
-    <div className="horizontal-filter-navigator-container">
+    <div className={`${handles.horizontalFilterNavigatorContainer} horizontal-filter-navigator-container`}>
       <FilterNavigatorContext.Provider value={queryArgs}>
         <FilterNavigator facets={facets} facetGroups={facetGroups} />
       </FilterNavigatorContext.Provider>

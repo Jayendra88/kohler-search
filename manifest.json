@@ -11,6 +11,7 @@
     "store": "0.x"
   },
   "dependencies": {
+    "vtex.css-handles": "1.x",
     "vtex.search-page-context": "0.x"
   },
   "registries": [

@@ -1,9 +1,15 @@
 import React, { useCallback, useMemo } from 'react';
+import { useCssHandles } from 'vtex.css-handles'
 import FilterDropdown from './FilterDropdown';
 import SelectedFilters from './SelectedFilters';
 import { useFacetNavigation, useFilterState } from '../hooks';
 import { FacetGroup, FacetItem } from '../types';
 import { newFacetPathName } from '../utils/slug';
+import './filterNavigator.css';
+
+const CSS_HANDLES = [
+  'filterNavigatorContainer',
+]
 
 const getSelectedCategories = (tree: any[]): any[] => {
   for (const node of tree) {
@@ -37,9 +43,8 @@ interface FilterNavigatorProps {
 }
 
 const FilterNavigator = ({ facetGroups, facets }: FilterNavigatorProps) => {
-
+  const { handles } = useCssHandles(CSS_HANDLES)
   const { selectedFilterValues, updateSelection } = useFilterState(facetGroups);
-
 
   const {
     brands,
@@ -77,7 +82,7 @@ const FilterNavigator = ({ facetGroups, facets }: FilterNavigatorProps) => {
 
   const handleSelectionChange = useCallback((facet: FacetItem) => {
 
-    console.log('>> Handling selection change:', { ...facet });
+    // console.log('>> Handling selection change:', { ...facet });
     // Update local state
     updateSelection(facet.value, facet.selected);
 
@@ -112,8 +117,7 @@ const FilterNavigator = ({ facetGroups, facets }: FilterNavigatorProps) => {
   }, [facetGroups, handleSelectionChange]);
 
   return <>
-
-    <div className="horizontal-filter-navigator">
+    <div className={handles.filterNavigatorContainer}>
       {facetGroups.map((group, index) => (
         <FilterDropdown
           key={`${group.type}-${group.key || index}`}
