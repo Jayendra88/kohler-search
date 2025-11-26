@@ -1,4 +1,8 @@
 {
   "admin/test": "test",
-  "store/test": "test"
+  "store/test": "test",
+  "store/filter-sidebar.button.label": "All Filters",
+  "store/filter-sidebar.button.clear": "Clear",
+  "store/filter-sidebar.button.apply": "Apply Filters",
+  "store/filter-sidebar.title": "Filters"
 }

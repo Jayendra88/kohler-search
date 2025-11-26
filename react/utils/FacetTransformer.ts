@@ -57,14 +57,28 @@ export class FacetTransformer {
     return {
       name: 'Price Range',
       type: 'priceRanges',
-      facets: priceRanges.map((price) => ({
-        id: price.slug || price.range || `price-${price.quantity}`,
-        quantity: price.quantity,
-        name: price.name || price.range || 'Price Range',
-        key: price.slug || price.range || `price-${price.quantity}`,
-        value: price.slug || price.range || `price-${price.quantity}`,
-        selected: price.selected || false,
-      }))
+      facets: priceRanges.map((price) => {
+        // Convert range object to string if it's an object
+        let rangeStr = '';
+        if (price.range && typeof price.range === 'object') {
+          const rangeObj = price.range as any;
+          rangeStr = `${rangeObj.from || 0} TO ${rangeObj.to || 0}`;
+        } else if (typeof price.range === 'string') {
+          rangeStr = price.range;
+        }
+
+        const id = price.slug || rangeStr || `price-${price.quantity}`;
+        const name = price.name || rangeStr || 'Price Range';
+
+        return {
+          id,
+          quantity: price.quantity,
+          name,
+          key: id,
+          value: id,
+          selected: price.selected || false,
+        };
+      })
     };
   }
 

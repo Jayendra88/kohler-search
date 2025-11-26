@@ -1,36 +1,3 @@
-/* Main Horizontal Filter Navigator Container */
-.horizontalFilterNavigatorContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    position: relative;
-}
-
-/* Filter Navigator Container - holds dropdowns and All Filters button */
-.filterNavigatorContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    align-items: center;
-}
-
-/* Loading State */
-.horizontalFilterNavigatorContainer--loading {
-    opacity: 0.6;
-    pointer-events: none;
-}
-
-.loadingPlaceholder {
-    color: #757575;
-    font-size: 14px;
-    font-style: italic;
-}
-
-/* Empty State */
-.horizontalFilterNavigatorContainer--empty {
-    display: none;
-}
-
 /* Filter Sidebar Button Styles */
 .filterSidebarButton {
   border: 1px solid #e3e4e6;
@@ -69,6 +36,18 @@
   font-weight: 400;
 }
 
+/* Sidebar Overlay */
+.sidebarOverlay {
+  z-index: 999;
+}
+
+/* Sidebar Container */
+.sidebarContainer {
+  z-index: 9999;
+  max-width: 400px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+}
+
 /* Sidebar Footer */
 .filterSidebarFooter {
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
@@ -99,4 +78,31 @@
 
 .filterSidebarApplyButton:active {
   opacity: 0.8;
+}
+
+/* Slide-in animation from right */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Filter Group Vertical Styles */
+.filterGroupVertical {
+  border-bottom: 1px solid #e3e4e6;
+  padding-bottom: 1rem;
+}
+
+.filterGroupVertical:last-child {
+  border-bottom: none;
+}
+
+.filterGroupTitle {
+  color: #3f3f40;
+  font-weight: 600;
 }
