@@ -1,5 +1,5 @@
 import React from 'react';
-import type { LoadingPlaceholderProps } from '../types';
+import type { LoadingPlaceholderProps } from '../../types';
 
 const LoadingPlaceholder: React.FC<LoadingPlaceholderProps> = ({ 
   message = "Loading filters..." 

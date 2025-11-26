@@ -2,9 +2,9 @@ import React, { useCallback, useMemo } from 'react';
 import { useCssHandles } from 'vtex.css-handles'
 import FilterDropdown from './FilterDropdown';
 import SelectedFilters from './SelectedFilters';
-import { useFacetNavigation, useFilterState } from '../hooks';
-import { FacetGroup, FacetItem } from '../types';
-import { newFacetPathName } from '../utils/slug';
+import { useFacetNavigation, useFilterState } from '../../hooks';
+import { FacetGroup, FacetItem } from '../../types';
+import { newFacetPathName } from '../../utils/slug';
 import './filterNavigator.css';
 
 const CSS_HANDLES = [

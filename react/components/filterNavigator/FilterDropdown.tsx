@@ -2,7 +2,7 @@ import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react'
 import { useCssHandles } from 'vtex.css-handles'
 import FacetCheckbox from './FacetCheckbox';
 import DropdownHeader from './DropdownHeader';
-import type { FilterDropdownProps, FacetItem } from '../types';
+import type { FilterDropdownProps, FacetItem } from '../../types';
 import './filterNavigator.css';
 
 const CSS_HANDLES = [

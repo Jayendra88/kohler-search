@@ -2,10 +2,10 @@ import React, { useMemo } from 'react';
 import { useSearchPage } from 'vtex.search-page-context/SearchPageContext';
 import { useCssHandles } from 'vtex.css-handles'
 
-import { LoadingPlaceholder } from './components';
+import { LoadingPlaceholder } from './components/filterNavigator/index';
 import { FacetTransformer } from './utils';
-import FilterNavigator from './components/FilterNavigator';
-import FilterNavigatorContext from './components/FilterNavigatorContext';
+import FilterNavigator from './components/filterNavigator/FilterNavigator';
+import FilterNavigatorContext from './components/filterNavigator/FilterNavigatorContext';
 import './horizontalFilterNavigator.css';
 
 const CSS_HANDLES = [

@@ -9,7 +9,7 @@ import {
   isRadioFilter,
   isToggleFilter,
 } from '../constants/filterTypes'
-import { useFilterNavigator } from '../components/FilterNavigatorContext'
+import { useFilterNavigator } from '../components/filterNavigator/FilterNavigatorContext'
 import { newFacetPathName } from '../utils/slug'
 import { HEADER_SCROLL_OFFSET } from '../constants/SearchHelpers'
 import {

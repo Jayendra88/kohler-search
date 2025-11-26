@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCssHandles } from 'vtex.css-handles';
-import type { FilterTagProps } from '../types';
+import type { FilterTagProps } from '../../types';
 
 const CSS_HANDLES = [
   'filterTag',
