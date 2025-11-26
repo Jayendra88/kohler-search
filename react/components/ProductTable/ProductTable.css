@@ -1,0 +1,53 @@
+.productTableWrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.productTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+}
+
+.tableHeader {
+  background-color: #f3f9ff;
+}
+
+.tableHeaderRow {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tableHeaderCell {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #000;
+  font-size: 14px;
+}
+
+.tableBody {
+  background-color: #fff;
+}
+
+.priceHeaderCell {
+  position: relative;
+}
+
+.priceHeaderContent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.infoIcon {
+  font-size: 12px;
+  opacity: 0.6;
+  cursor: help;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.05);
+}
