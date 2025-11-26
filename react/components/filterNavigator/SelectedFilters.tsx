@@ -1,18 +1,20 @@
-import React from 'react';
-import { useCssHandles } from 'vtex.css-handles';
-import FilterTag from './FilterTag';
-import type { SelectedFiltersProps } from '../../types';
+import React from 'react'
+import { useCssHandles } from 'vtex.css-handles'
 
-const CSS_HANDLES = [
-  'selectedFilters',
-  'selectedFiltersTitle',
-  'filterTags',
-]
+import FilterTag from './FilterTag'
+import type { SelectedFiltersProps } from '../../types'
+import './filterNavigator.css'
 
-const SelectedFilters: React.FC<SelectedFiltersProps> = ({ selectedFacets, onRemoveFilter }) => {
+const CSS_HANDLES = ['selectedFilters', 'selectedFiltersTitle', 'filterTags']
+
+const SelectedFilters: React.FC<SelectedFiltersProps> = ({
+  selectedFacets,
+  onRemoveFilter,
+}) => {
   const { handles } = useCssHandles(CSS_HANDLES)
+
   if (selectedFacets.length === 0) {
-    return null;
+    return null
   }
 
   return (
@@ -20,7 +22,7 @@ const SelectedFilters: React.FC<SelectedFiltersProps> = ({ selectedFacets, onRem
       <div className={`${handles.selectedFiltersTitle} selected-filters-title`}>
         Active Filters ({selectedFacets.length}):
       </div>
-      <div className={`${handles.filterTags} filter-tags`}>
+      <div className={`${handles.filterTags} flex flex-row filter-tags`}>
         {selectedFacets.map((facet) => (
           <FilterTag
             key={facet.value}
@@ -30,7 +32,7 @@ const SelectedFilters: React.FC<SelectedFiltersProps> = ({ selectedFacets, onRem
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SelectedFilters;
+export default SelectedFilters

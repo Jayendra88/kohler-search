@@ -1,1 +1,7 @@
-.filterNavigatorContainer {}
+.filterNavigatorContainer {
+  gap: 1rem;
+}
+
+.filterTags {
+  gap: 1rem;
+}
