@@ -9,11 +9,16 @@
 
 export interface FacetItem {
   id: string;
+  href?: string;
   quantity: number;
   name: string;
   key: string;
   value: string;
   selected: boolean;
+  link?: string;
+  linkEncoded?: string;
+  map?: string;
+  range?: string;
   children?: FacetItem[];
 }
 
@@ -127,10 +132,7 @@ export interface LoadingPlaceholderProps {
 // ============================================================================
 
 export type FacetSelectionChangeHandler = (
-  facetType: string,
-  key: string | null,
-  value: string,
-  selected: boolean
+    facet: FacetItem
 ) => void;
 
 export type FacetNavigationHandler = (
@@ -147,7 +149,7 @@ export type FilterStateUpdater = (value: string, selected: boolean) => void;
 // ============================================================================
 
 export interface FilterStateHookReturn {
-  selectedFilters: Set<string>;
+  selectedFilterValues: Set<string>;
   updateSelection: FilterStateUpdater;
 }
 

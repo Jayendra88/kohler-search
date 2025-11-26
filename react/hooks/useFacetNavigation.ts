@@ -9,7 +9,7 @@ import {
   isRadioFilter,
   isToggleFilter,
 } from '../constants/filterTypes'
-import { useFilterNavigator } from '../components/FilterNavigatorContext'
+import { useFilterNavigator } from '../components/filterNavigator/FilterNavigatorContext'
 import { newFacetPathName } from '../utils/slug'
 import { HEADER_SCROLL_OFFSET } from '../constants/SearchHelpers'
 import {
@@ -59,8 +59,8 @@ const replaceQueryForNewQueryFormat = (
   mapString: string,
   selectedFacets: any[]
 ): string => {
-  const queryArray = queryString.split(PATH_SEPARATOR)
-  const mapArray = mapString.split(MAP_VALUES_SEP)
+  const queryArray = queryString?.split(PATH_SEPARATOR)
+  const mapArray = mapString?.split(MAP_VALUES_SEP)
   const newQueryFormatArray = zip(queryArray, mapArray).map(
     ([querySegment, mapSegment]: [string, string]) => {
       const facetForQuery = selectedFacets.find((facet: any) => {
@@ -82,7 +82,7 @@ const removeMapForNewURLFormat = (
   map: string,
   selectedFacets: any[]
 ): string => {
-  const mapArray = map.split(MAP_VALUES_SEP)
+  const mapArray = map?.split(MAP_VALUES_SEP)
   const mapsToFilter = selectedFacets.reduce((acc: string[], facet: any) => {
     return facet.map === MAP_CATEGORY_CHAR ||
       (facet.newQuerySegment &&
@@ -410,7 +410,7 @@ const useFacetNavigation = (selectedFacets: any, scrollToTop = 'none') => {
   const { fuzzy, operator, searchState } = useSearchState()
   const { searchQuery } = useSearchPage()
   const [ignoreGlobalShipping, setIgnoreGlobalShipping] = useState(false)
-  const fullTextQuery = map.split(',').includes('ft')
+  const fullTextQuery = map?.split(',').includes('ft')
 
   const mainSearches = getMainSearches(query, map)
 
