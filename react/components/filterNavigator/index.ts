@@ -16,4 +16,4 @@ export type {
   FilterDropdownProps,
   FacetGroup,
   LoadingPlaceholderProps
-} from '../types';
+} from '../../types';

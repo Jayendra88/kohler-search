@@ -9,7 +9,7 @@ import {
   isRadioFilter,
   isToggleFilter,
 } from '../constants/filterTypes'
-import { useFilterNavigator } from '../components/FilterNavigatorContext'
+import { useFilterNavigator } from '../components/filterNavigator/FilterNavigatorContext'
 import { newFacetPathName } from '../utils/slug'
 import { HEADER_SCROLL_OFFSET } from '../constants/SearchHelpers'
 import {
@@ -59,8 +59,8 @@ const replaceQueryForNewQueryFormat = (
   mapString: string,
   selectedFacets: any[]
 ): string => {
-  const queryArray = queryString.split(PATH_SEPARATOR)
-  const mapArray = mapString.split(MAP_VALUES_SEP)
+  const queryArray = queryString?.split(PATH_SEPARATOR)
+  const mapArray = mapString?.split(MAP_VALUES_SEP)
   const newQueryFormatArray = zip(queryArray, mapArray).map(
     ([querySegment, mapSegment]: [string, string]) => {
       const facetForQuery = selectedFacets.find((facet: any) => {
@@ -78,8 +78,11 @@ const replaceQueryForNewQueryFormat = (
   return newQueryFormatArray.join(PATH_SEPARATOR)
 }
 
-const removeMapForNewURLFormat = (map: string, selectedFacets: any[]): string => {
-  const mapArray = map.split(MAP_VALUES_SEP)
+const removeMapForNewURLFormat = (
+  map: string,
+  selectedFacets: any[]
+): string => {
+  const mapArray = map?.split(MAP_VALUES_SEP)
   const mapsToFilter = selectedFacets.reduce((acc: string[], facet: any) => {
     return facet.map === MAP_CATEGORY_CHAR ||
       (facet.newQuerySegment &&
@@ -109,14 +112,23 @@ const getCleanUrlParams = (currentMap: string): URLSearchParams => {
 /**
  * Removes other facets from the same group (key) from selectedFacets
  */
-const removeOtherFacetsFromSameGroup = (selectedFacets: any[], facetKey: string): any[] => {
-  return selectedFacets.filter((selectedFacet: any) => selectedFacet.key !== facetKey)
+const removeOtherFacetsFromSameGroup = (
+  selectedFacets: any[],
+  facetKey: string
+): any[] => {
+  return selectedFacets.filter(
+    (selectedFacet: any) => selectedFacet.key !== facetKey
+  )
 }
 
 /**
  * Removes a specific facet from selectedFacets by value and map
  */
-const removeSpecificFacet = (selectedFacets: any[], facetValue: string, facetMap: string): any[] => {
+const removeSpecificFacet = (
+  selectedFacets: any[],
+  facetValue: string,
+  facetMap: string
+): any[] => {
   return selectedFacets.filter(
     (selectedFacet: any) =>
       selectedFacet.value !== facetValue && selectedFacet.map !== facetMap
@@ -126,19 +138,29 @@ const removeSpecificFacet = (selectedFacets: any[], facetValue: string, facetMap
 /**
  * Finds indices in query/map that match facets from the same group
  */
-const findIndicesOfSameGroupFacets = (query: string[], map: string[], facet: any): number[] => {
+const findIndicesOfSameGroupFacets = (
+  query: string[],
+  map: string[],
+  facet: any
+): number[] => {
   const indicesToRemove: number[] = []
 
-  zip(query, map).forEach(([value, valueMap]: [string, string], index: number) => {
-    const existingFacet = { value, map: valueMap, key: facet.key }
+  zip(query, map).forEach(
+    ([value, valueMap]: [string, string], index: number) => {
+      const existingFacet = { value, map: valueMap, key: facet.key }
 
-    if (
-      compareFacetWithQueryValues(value as string, valueMap as string, existingFacet) &&
-      valueMap === facet.map
-    ) {
-      indicesToRemove.push(index)
+      if (
+        compareFacetWithQueryValues(
+          value as string,
+          valueMap as string,
+          existingFacet
+        ) &&
+        valueMap === facet.map
+      ) {
+        indicesToRemove.push(index)
+      }
     }
-  })
+  )
 
   return indicesToRemove
 }
@@ -146,7 +168,11 @@ const findIndicesOfSameGroupFacets = (query: string[], map: string[], facet: any
 /**
  * Removes multiple indices from query and map arrays
  */
-const removeMultipleIndices = (query: string[], map: string[], indices: number[]): { query: string[], map: string[] } => {
+const removeMultipleIndices = (
+  query: string[],
+  map: string[],
+  indices: number[]
+): { query: string[]; map: string[] } => {
   let updatedQuery = query
   let updatedMap = map
 
@@ -172,7 +198,12 @@ const findFacetIndex = (query: string[], map: string[], facet: any): number => {
  * Generic handler for facet selection (adding to URL)
  * Handles both toggle and radio filters with their specific exclusion logic
  */
-const handleFacetSelection = (query: string[], map: string[], facet: any, selectedFacets: any[]): { query: string[], map: string[], selectedFacets: any[] } => {
+const handleFacetSelection = (
+  query: string[],
+  map: string[],
+  facet: any,
+  selectedFacets: any[]
+): { query: string[]; map: string[]; selectedFacets: any[] } => {
   const isToggle = isToggleFilter(facet.key)
   const isRadio = isRadioFilter(facet.key)
 
@@ -213,7 +244,12 @@ const handleFacetSelection = (query: string[], map: string[], facet: any, select
 /**
  * Generic handler for facet deselection (removing from URL)
  */
-const handleFacetDeselection = (query: string[], map: string[], facet: any, selectedFacets: any[]): { query: string[], map: string[], selectedFacets: any[] } => {
+const handleFacetDeselection = (
+  query: string[],
+  map: string[],
+  facet: any,
+  selectedFacets: any[]
+): { query: string[]; map: string[]; selectedFacets: any[] } => {
   const isRadio = isRadioFilter(facet.key)
 
   // Remove facet from selectedFacets
@@ -237,7 +273,7 @@ const buildQueryAndMap = (
   mapSegments: string[],
   facets: any[],
   selectedFacets: any[]
-): { query: string, map: string } => {
+): { query: string; map: string } => {
   const queryAndMap = facets.reduce(
     // eslint-disable-next-line max-params
     // The spread on facet is important so we can assign facet.newQuerySegment
@@ -315,10 +351,10 @@ export const buildNewQueryMap = (
   selectedFacets: any[],
   ignoreGlobalShipping: boolean,
   onShouldIgnore: (should: boolean) => void
-): { query: string, map: string } => {
+): { query: string; map: string } => {
   // RadioGroup behavior - only apply radio logic when radio filters are actually involved
   let shouldIgnore = ignoreGlobalShipping
-  const selectedShippingFacet = facets?.find(facet =>
+  const selectedShippingFacet = facets?.find((facet) =>
     isSingleOptionFilter(facet.key)
   )
 
@@ -327,7 +363,7 @@ export const buildNewQueryMap = (
     if (!selectedShippingFacet.selected) {
       // Remove only single option filters of the same key/type when deselecting
       selectedFacets = selectedFacets.filter(
-        facet => facet.key !== selectedShippingFacet.key
+        (facet) => facet.key !== selectedShippingFacet.key
       )
       shouldIgnore = false
       onShouldIgnore(false)
@@ -343,8 +379,8 @@ export const buildNewQueryMap = (
     onShouldIgnore(false)
   }
 
-  const querySegments = selectedFacets.map(facet => facet.value)
-  const mapSegments = selectedFacets.map(facet => facet.map)
+  const querySegments = selectedFacets.map((facet) => facet.value)
+  const mapSegments = selectedFacets.map((facet) => facet.map)
   const shouldAddIgnoreSegment = shouldIgnore && selectedShippingFacet
 
   if (shouldAddIgnoreSegment) {
@@ -368,13 +404,13 @@ export const buildNewQueryMap = (
   return buildQueryAndMap(querySegments, mapSegments, facets, selectedFacets)
 }
 
-const useFacetNavigation = (selectedFacets, scrollToTop = 'none') => {
+const useFacetNavigation = (selectedFacets: any, scrollToTop = 'none') => {
   const { navigate, setQuery, query: runtimeQuery } = useRuntime()
-  const { map, query } = useFilterNavigator()
+  const { map, query } = useFilterNavigator() as any
   const { fuzzy, operator, searchState } = useSearchState()
   const { searchQuery } = useSearchPage()
   const [ignoreGlobalShipping, setIgnoreGlobalShipping] = useState(false)
-  const fullTextQuery = map.split(',').includes('ft')
+  const fullTextQuery = map?.split(',').includes('ft')
 
   const mainSearches = getMainSearches(query, map)
 
@@ -387,12 +423,15 @@ const useFacetNavigation = (selectedFacets, scrollToTop = 'none') => {
       priceRange = undefined
     ) => {
       const facets = Array.isArray(maybeFacets) ? maybeFacets : [maybeFacets]
-      const { query: currentQuery, map: currentMap } = buildNewQueryMap(
+      const {
+        query: currentQuery,
+        map: currentMap,
+      } = buildNewQueryMap(
         mainSearches,
         facets,
         selectedFacets,
         ignoreGlobalShipping,
-        should => setIgnoreGlobalShipping(should)
+        (should) => setIgnoreGlobalShipping(should)
       )
 
       if (isReset) {
@@ -400,7 +439,7 @@ const useFacetNavigation = (selectedFacets, scrollToTop = 'none') => {
       }
 
       if (scrollToTop !== 'none') {
-        window.scroll({ top: 0, left: 0, behavior: scrollToTop })
+        window.scroll({ top: 0, left: 0, behavior: scrollToTop as any })
       }
 
       if (preventRouteChange) {
@@ -411,13 +450,15 @@ const useFacetNavigation = (selectedFacets, scrollToTop = 'none') => {
 
         const queries = {
           ...(currentMap && { map: `${currentMap}` }),
-          query: `/${isReset ? (runtimeQuery.initialQuery || '') : (currentQuery || '')}`,
+          query: `/${
+            isReset ? runtimeQuery?.initialQuery || '' : currentQuery || ''
+          }`,
           page: undefined,
           fuzzy: fullTextQuery ? fuzzy || undefined : undefined,
           operator: fullTextQuery ? operator || undefined : undefined,
           searchState: state,
-          initialMap: runtimeQuery.initialMap ?? map,
-          initialQuery: runtimeQuery.initialQuery ?? query,
+          initialMap: runtimeQuery?.initialMap ?? map,
+          initialQuery: runtimeQuery?.initialQuery ?? query,
           ...(isReset ? { priceRange: undefined } : { priceRange }),
         }
 
@@ -465,7 +506,7 @@ const useFacetNavigation = (selectedFacets, scrollToTop = 'none') => {
       }
 
       if (!newQuery || newQuery === 'ignore') {
-        const { initialQuery, initialMap } = runtimeQuery
+        const { initialQuery, initialMap } = runtimeQuery ?? {}
 
         if (!initialQuery || !initialMap) {
           return
