@@ -2,12 +2,11 @@ import React, { useCallback, useMemo } from 'react'
 import { useCssHandles } from 'vtex.css-handles'
 
 import FacetCheckbox from './FacetCheckbox'
-import SelectedFilters from './SelectedFilters'
 import { useFacetNavigation, useFilterState } from '../../hooks'
 import { FacetGroup, FacetItem } from '../../types'
 import { newFacetPathName } from '../../utils/slug'
 
-const CSS_HANDLES = ['filterNavigatorVertical', 'filterGroupVertical', 'filterGroupTitle']
+const CSS_HANDLES = ['filterNavigatorVertical', 'filterGroupVertical', 'filterGroupTitle', 'filterGroupList']
 
 const getSelectedCategories = (tree: any[]): any[] => {
   for (const node of tree) {
@@ -89,70 +88,28 @@ const FilterNavigatorVertical = ({
     [navigateToFacet, updateSelection]
   )
 
-  // Collect all selected facets from all groups
-  const allSelectedFacets = useMemo(() => {
-    const selected: FacetItem[] = []
-
-    facetGroups.forEach((group) => {
-      group.facets.forEach((facet) => {
-        if (selectedFilterValues.has(facet.value)) {
-          selected.push(facet)
-        }
-      })
-    })
-
-    return selected
-  }, [facetGroups, selectedFilterValues])
-
-  const handleRemoveFilter = useCallback(
-    (value: string) => {
-      // Find the facet type and key for the value
-      let selectedFacet = null
-
-      facetGroups.forEach((group) => {
-        selectedFacet = group.facets.find((f) => f.value === value)
-      })
-
-      if (selectedFacet) {
-        handleSelectionChange(selectedFacet)
-      }
-    },
-    [facetGroups, handleSelectionChange]
-  )
-
   return (
-    <div className={`${handles.filterNavigatorVertical} flex flex-column`}>
-      {/* Display selected filters at the top */}
-      {allSelectedFacets.length > 0 && (
-        <div className="mb4">
-          <SelectedFilters
-            selectedFacets={allSelectedFacets}
-            onRemoveFilter={handleRemoveFilter}
-          />
-        </div>
-      )}
-
+    <div className={handles.filterNavigatorVertical}>
       {/* Display all filter groups vertically */}
       {facetGroups.map((group, index) => (
         <div
           key={`${group.type}-${group.key || index}`}
-          className={`${handles.filterGroupVertical} mb4`}
+          className={handles.filterGroupVertical}
         >
-          <h4 className={`${handles.filterGroupTitle} t-heading-6 mb3`}>
+          <h4 className={handles.filterGroupTitle}>
             {group.name}
           </h4>
-          <div className="flex flex-column">
+          <div className={handles.filterGroupList}>
             {group.facets.map((facet) => {
               const isSelected = selectedFilterValues.has(facet.value)
 
               return (
-                <div key={facet.id} className="mb2">
-                  <FacetCheckbox
-                    facet={facet}
-                    isSelected={isSelected}
-                    onChange={handleSelectionChange}
-                  />
-                </div>
+                <FacetCheckbox
+                  key={facet.id}
+                  facet={facet}
+                  isSelected={isSelected}
+                  onChange={handleSelectionChange}
+                />
               )
             })}
           </div>

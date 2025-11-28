@@ -15,6 +15,9 @@ const CSS_HANDLES = [
   'filterSidebarButton',
   'filterSidebarButtonText',
   'filterSidebarButtonIcon',
+  'filterSidebarHeader',
+  'filterSidebarTitle',
+  'filterSidebarContent',
   'filterSidebarFooter',
   'filterSidebarClearButton',
   'filterSidebarApplyButton',
@@ -171,8 +174,13 @@ const FilterNavigator = ({ facetGroups, facets }: FilterNavigatorProps) => {
 
       {/* Sidebar Modal */}
       <Sidebar isOpen={isSidebarOpen} onOutsideClick={() => setIsSidebarOpen(false)} fullWidth={false}>
-        <div className="flex-auto overflow-y-auto pa4 pb0">
-          <h3 className="t-heading-5 mb4">Filters</h3>
+        {/* Header */}
+        <div className={handles.filterSidebarHeader}>
+          <h3 className={handles.filterSidebarTitle}>All Filters</h3>
+        </div>
+
+        {/* Content */}
+        <div className={handles.filterSidebarContent}>
           <FilterNavigatorVertical
             facets={facets}
             facetGroups={facetGroups}
@@ -180,17 +188,15 @@ const FilterNavigator = ({ facetGroups, facets }: FilterNavigatorProps) => {
         </div>
 
         {/* Footer with Clear and Apply buttons */}
-        <div
-          className={`${handles.filterSidebarFooter} bt b--muted-5 items-center flex bg-base pa3`}
-        >
+        <div className={`${handles.filterSidebarFooter} flex`}>
           <button
-            className={`${handles.filterSidebarClearButton} flex-auto mr2 ph4 pv3 bn bg-muted-5 br2 pointer`}
+            className={`${handles.filterSidebarClearButton} flex-auto`}
             onClick={() => setIsSidebarOpen(false)}
           >
-            Clear
+            Clear Filters
           </button>
           <button
-            className={`${handles.filterSidebarApplyButton} flex-auto ml2 ph4 pv3 bn bg-action-primary c-on-action-primary br2 pointer`}
+            className={`${handles.filterSidebarApplyButton} flex-auto`}
             onClick={() => setIsSidebarOpen(false)}
           >
             Apply Filters

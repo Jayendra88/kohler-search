@@ -333,34 +333,109 @@
   font-weight: 400;
 }
 
-/* Sidebar Footer */
+/* Sidebar Footer - Sticky Buttons */
 .filterSidebarFooter {
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #E7E9EE;
+  background-color: #FFFFFF;
+  padding: 1rem;
   flex-shrink: 0;
+  gap: 0.75rem;
 }
 
-/* Clear Button */
+/* Clear Filters Button - Secondary */
 .filterSidebarClearButton {
-  transition: background-color 0.2s ease;
+  background-color: transparent;
+  color: #3F3F40;
+  border: 1px solid #3F3F40;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .filterSidebarClearButton:hover {
-  background-color: #e3e4e6;
+  background-color: #F8F9FA;
+  border-color: #2d2d2e;
 }
 
 .filterSidebarClearButton:active {
-  background-color: #cacbcc;
+  background-color: #E7E9EE;
 }
 
-/* Apply Button */
+/* Apply Filters Button - Primary */
 .filterSidebarApplyButton {
+  background-color: #3F3F40;
+  color: #FFFFFF;
+  border: 1px solid #3F3F40;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .filterSidebarApplyButton:hover {
-  opacity: 0.9;
+  background-color: #2d2d2e;
+  border-color: #2d2d2e;
 }
 
 .filterSidebarApplyButton:active {
-  opacity: 0.8;
+  background-color: #1a1a1a;
+}
+
+/* Sidebar Header */
+.filterSidebarHeader {
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid #E7E9EE;
+  background-color: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.filterSidebarTitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #3F3F40;
+  margin: 0;
+}
+
+/* Sidebar Content Area */
+.filterSidebarContent {
+  padding: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Filter Navigator Vertical (inside sidebar) */
+.filterNavigatorVertical {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Filter Group Vertical - Accordion Sections */
+.filterGroupVertical {
+  border-top: 1px solid #E7E9EE;
+  padding: 1rem;
+}
+
+.filterGroupVertical:first-child {
+  border-top: none;
+}
+
+/* Filter Group Title - Accordion Headers */
+.filterGroupTitle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #3F3F40;
+  margin: 0 0 0.75rem 0;
+  letter-spacing: 0.02em;
+}
+
+/* Filter Group List - Contains checkboxes */
+.filterGroupList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
