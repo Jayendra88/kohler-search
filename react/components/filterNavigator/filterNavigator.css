@@ -2,8 +2,9 @@
 .filterNavigatorContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
 }
 
 @media (max-width: 768px) {
@@ -292,4 +293,149 @@
 .tagRemove:focus {
   outline: 2px solid white;
   outline-offset: 1px;
+}
+
+/* All Filters Button Styles */
+.filterSidebarButton {
+  border: 1px solid #e3e4e6;
+  transition: all 0.2s ease;
+  min-width: auto;
+  font-size: 0.875rem;
+  color: #3f3f40;
+  background-color: #f7f9fa;
+  height: 40px;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  font-weight: 400;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+}
+
+.filterSidebarButton:hover {
+  background-color: #eef1f3;
+  border-color: #cacbcc;
+}
+
+.filterSidebarButton:active {
+  background-color: #e3e6e8;
+}
+
+.filterSidebarButtonIcon {
+  display: flex;
+  align-items: center;
+  color: #727273;
+}
+
+.filterSidebarButtonText {
+  color: #3f3f40;
+  font-weight: 400;
+}
+
+/* Sidebar Footer - Sticky Buttons */
+.filterSidebarFooter {
+  border-top: 1px solid #E7E9EE;
+  background-color: #FFFFFF;
+  padding: 1rem;
+  flex-shrink: 0;
+  gap: 0.75rem;
+}
+
+/* Clear Filters Button - Secondary */
+.filterSidebarClearButton {
+  background-color: transparent;
+  color: #3F3F40;
+  border: 1px solid #3F3F40;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.filterSidebarClearButton:hover {
+  background-color: #F8F9FA;
+  border-color: #2d2d2e;
+}
+
+.filterSidebarClearButton:active {
+  background-color: #E7E9EE;
+}
+
+/* Apply Filters Button - Primary */
+.filterSidebarApplyButton {
+  background-color: #3F3F40;
+  color: #FFFFFF;
+  border: 1px solid #3F3F40;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.filterSidebarApplyButton:hover {
+  background-color: #2d2d2e;
+  border-color: #2d2d2e;
+}
+
+.filterSidebarApplyButton:active {
+  background-color: #1a1a1a;
+}
+
+/* Sidebar Header */
+.filterSidebarHeader {
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid #E7E9EE;
+  background-color: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.filterSidebarTitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #3F3F40;
+  margin: 0;
+}
+
+/* Sidebar Content Area */
+.filterSidebarContent {
+  padding: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Filter Navigator Vertical (inside sidebar) */
+.filterNavigatorVertical {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Filter Group Vertical - Accordion Sections */
+.filterGroupVertical {
+  border-top: 1px solid #E7E9EE;
+  padding: 1rem;
+}
+
+.filterGroupVertical:first-child {
+  border-top: none;
+}
+
+/* Filter Group Title - Accordion Headers */
+.filterGroupTitle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #3F3F40;
+  margin: 0 0 0.75rem 0;
+  letter-spacing: 0.02em;
+}
+
+/* Filter Group List - Contains checkboxes */
+.filterGroupList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }

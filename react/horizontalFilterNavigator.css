@@ -1,8 +1,8 @@
 /* Main Horizontal Filter Navigator Container */
 .horizontalFilterNavigatorContainer {
-    padding: 1rem 0;
-    border-bottom: 1px solid #E7E9EE;
-    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     position: relative;
 }
 
@@ -10,7 +10,6 @@
 .horizontalFilterNavigatorContainer--loading {
     opacity: 0.6;
     pointer-events: none;
-    padding: 1rem 0;
 }
 
 .loadingPlaceholder {
